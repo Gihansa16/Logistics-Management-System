@@ -250,10 +250,10 @@ void inputDistance(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]
 }
 void displayDistanceTable(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]){
     printf("\n------Distance Table (km)------\n");
-    for(int i = 0; i < cityCount; i++){
+    for(int i = 0; i < cityCount; i++)
     printf("%-10s", cityNames[i]);
     printf("\n");
-    }
+
     for(int i = 0; i < cityCount; i++)
     {
         printf("%-5s", cityNames[i]);
