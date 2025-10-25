@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1761388141 source:c:\users\gihansa\desktop\logistics management system\logistics-management-system\main.c
+1761390511 source:c:\users\gihansa\desktop\logistics management system\logistics-management-system\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
