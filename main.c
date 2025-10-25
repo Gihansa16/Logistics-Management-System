@@ -4,24 +4,37 @@
 #define MAX_CITIES 30
 #define MAX_DELIVERIES 50
 #define FUEL_PRICE 310.0
-
 void addCities(int maxCities,char cityNames[][30],int *cityCount);
 void renameCity(char cityNames[][30],int cityCount);
 void removeCity(char cityNames[][30],int *cityCount);
 void displayCities(char cityNames[][30],int cityCount);
 void inputDistance(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]);
 void displayDistanceTable(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]);
+void showVehicles(Vehicle vehicles[],int size);
+typedef struct
+{
+    char name[20];
+    int capacity;
+    double ratePerKm,speed,efficiency;
+}Vehicle;
 int main()
 {
     char cityNames[MAX_CITIES][30];
     int cityCount=0;
     int distance[MAX_CITIES][MAX_CITIES];
+    Vehicle vehicles[3]=
+    {
+        {"Van",1000,30,60,12},
+        {"Truck",5000,40,50,6},
+        {"Lorry",10000,80,45,4}
+    };
     int choice,c2;
     do
     {
         printf("\n----Logistics Management System----\n");
         printf("1.Manage Cities\n");
-        printf("2. Manage Distances\n");
+        printf("2.Manage Distances\n");
+        printf("3. Show Vehicles\n");
         printf("6.Exit\n");
         printf("Enter your choice:");
         scanf("%d",&choice);
@@ -90,6 +103,10 @@ int main()
 }
             while (c2 != 3);
             break;
+        case 3:
+            showVehicles(vehicles, 3);
+            break;
+
         case 6:
             printf("Exiting program...\n");
             break;
@@ -229,4 +246,12 @@ void displayDistanceTable(int distance[][MAX_CITIES],int cityCount,char cityName
     }
     printf("---------------------------------\n");
 }
-
+void showVehicles(Vehicle vehicles[], int size){
+    printf("\n---Vehicles---\n");
+    printf("%-5s %-10s %-10s %-10s %-10s %-15s\n","ID", "Type", "Cap(kg)", "Rate/km", "Speed", "FuelEff(km/l)");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%-5d %-10s %-10d %-10.2f %-10.2f %-15.2f\n",i + 1, vehicles[i].name, vehicles[i].capacity,vehicles[i].ratePerKm, vehicles[i].speed, vehicles[i].efficiency);
+    }
+    printf("---------------------------------\n");
+}
