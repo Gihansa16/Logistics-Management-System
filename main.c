@@ -126,6 +126,9 @@ int main()
         case 4:
             deliveryEstimation(cityNames, cityCount, distance, vehicles, 3, deliveries, &deliveryCount);
             break;
+        case 5:
+            showReports(deliveries, deliveryCount, cityNames);
+            break;
         case 6:
             printf("Exiting program...\n");
             break;
