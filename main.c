@@ -18,6 +18,7 @@ int main()
     {
         printf("\n----Logistics Management System----\n");
         printf("1.Manage Cities\n");
+        printf("2. Manage Distances\n");
         printf("6.Exit\n");
         printf("Enter your choice:");
         scanf("%d",&choice);
@@ -55,7 +56,22 @@ int main()
             }
             while(c2!=5);
             break;
-        default:
+        case 2:
+            if (cityCount < 2)
+            {
+                printf("\nAdd at least 2 cities first.\n");
+                break;
+            }
+            do
+            {
+                printf("\n---Distance Management---\n");
+                printf("3. Back\n");
+                printf("Enter choice: ");
+                scanf("%d", &c2);
+            }
+            while (c2 != 3);
+            break;
+            default:
             printf("Invalid choice!\n");
         }
     }
