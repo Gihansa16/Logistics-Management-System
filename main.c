@@ -4,6 +4,13 @@
 #define MAX_CITIES 30
 #define MAX_DELIVERIES 50
 #define FUEL_PRICE 310.0
+typedef struct
+{
+    char name[20];
+    int capacity;
+    double ratePerKm,speed,efficiency;
+}Vehicle;
+
 void addCities(int maxCities,char cityNames[][30],int *cityCount);
 void renameCity(char cityNames[][30],int cityCount);
 void removeCity(char cityNames[][30],int *cityCount);
@@ -11,12 +18,7 @@ void displayCities(char cityNames[][30],int cityCount);
 void inputDistance(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]);
 void displayDistanceTable(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]);
 void showVehicles(Vehicle vehicles[],int size);
-typedef struct
-{
-    char name[20];
-    int capacity;
-    double ratePerKm,speed,efficiency;
-}Vehicle;
+
 int main()
 {
     char cityNames[MAX_CITIES][30];
