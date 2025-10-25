@@ -375,4 +375,20 @@ void showReports(Delivery deliveries[], int deliveryCount, char cityNames[][30])
             shortIdx = i;
         }
     }
+printf("\n-------------PERFORMANCE REPORT----------------\n");
+    printf("Total Deliveries Completed: %d\n", deliveryCount);
+    printf("Total Distance Covered: %.2f km\n", totalDist);
+    printf("Average Delivery Time: %.2f hours\n", totalTime / deliveryCount);
+    printf("Total Revenue: %.2f LKR\n", totalRevenue);
+    printf("Total Profit: %.2f LKR\n", totalProfit);
+    printf("\nLongest Route: %.2f km (%s -> %s)\n",
+           deliveries[longIdx].distance,
+           cityNames[deliveries[longIdx].source],
+           cityNames[deliveries[longIdx].destination]);
+    printf("Shortest Route: %.2f km (%s -> %s)\n",
+           deliveries[shortIdx].distance,
+           cityNames[deliveries[shortIdx].source],
+           cityNames[deliveries[shortIdx].destination]);
+    printf("========================================\n");
+}
 
