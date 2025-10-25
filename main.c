@@ -23,6 +23,7 @@ void inputDistance(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]
 void displayDistanceTable(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]);
 void showVehicles(Vehicle vehicles[],int size);
 void deliveryEstimation(char cityNames[][30],int cityCount,int distance[][MAX_CITIES],Vehicle vehicles[],int vehicleCount,Delivery deliveries[],int *deliveryCount);
+void showReports(Delivery deliveries[],int deliveryCount,char cityNames[][30]);
 int main()
 {
     char cityNames[MAX_CITIES][30];
@@ -51,6 +52,7 @@ int main()
         printf("2.Manage Distances\n");
         printf("3.Show Vehicles\n");
         printf("4.Delivery Cost Estimation\n");
+        printf("5.Reports\n");
         printf("6.Exit\n");
         printf("Enter your choice:");
         scanf("%d",&choice);
@@ -180,8 +182,7 @@ void renameCity(char cityNames[][30],int cityCount){
     printf("Renamed successfully!\n");
 }
 
-void removeCity(char cityNames[][30],int *cityCount)
-{
+void removeCity(char cityNames[][30],int *cityCount){
     if (*cityCount == 0)
     {
         printf("No cities to remove.\n");
@@ -283,7 +284,6 @@ void deliveryEstimation(char cityNames[][30], int cityCount, int distance[][MAX_
         printf("Maximum limit reached.\n");
         return;
     }
-
     displayCities(cityNames, cityCount);
     int src, dest;
     printf("Enter source city number: ");
@@ -300,7 +300,6 @@ void deliveryEstimation(char cityNames[][30], int cityCount, int distance[][MAX_
         printf("Distance not defined between cities.\n");
         return;
     }
-
     showVehicles(vehicles, vehicleCount);
     int vChoice;
     printf("Select vehicle type: ");
@@ -350,4 +349,30 @@ void deliveryEstimation(char cityNames[][30], int cityCount, int distance[][MAX_
     printf("Estimated Time: %.2f hours\n", timeHrs);
     printf("=====================================================\n");
 }
+void showReports(Delivery deliveries[], int deliveryCount, char cityNames[][30]){
+    if (deliveryCount == 0)
+    {
+        printf("\nNo deliveries.\n");
+        return;
+    }
+    double totalDist = 0, totalTime = 0, totalProfit = 0, totalRevenue = 0;
+    double longest = -1, shortest = 1e9;
+    int longIdx = -1, shortIdx = -1;
+    for (int i = 0; i < deliveryCount; i++)
+    {
+        totalDist += deliveries[i].distance;
+        totalTime += deliveries[i].timeHrs;
+        totalProfit += deliveries[i].profit;
+        totalRevenue += deliveries[i].customerCharge;
+        if (deliveries[i].distance > longest)
+        {
+            longest = deliveries[i].distance;
+            longIdx = i;
+        }
+        if (deliveries[i].distance < shortest)
+        {
+            shortest = deliveries[i].distance;
+            shortIdx = i;
+        }
+    }
 
