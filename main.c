@@ -9,10 +9,12 @@ void addCities(int maxCities,char cityNames[][30],int *cityCount);
 void renameCity(char cityNames[][30],int cityCount);
 void removeCity(char cityNames[][30],int *cityCount);
 void displayCities(char cityNames[][30],int cityCount);
+void inputDistance(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]);
 int main()
 {
     char cityNames[MAX_CITIES][30];
     int cityCount=0;
+    int distance[MAX_CITIES][MAX_CITIES];
     int choice,c2;
     do
     {
@@ -65,10 +67,22 @@ int main()
             do
             {
                 printf("\n---Distance Management---\n");
+                printf("1. Input/Edit Distance\n");
                 printf("3. Back\n");
                 printf("Enter choice: ");
                 scanf("%d", &c2);
-            }
+
+                switch (c2)
+                {
+                case 1:
+                    inputDistance(distance, cityCount, cityNames);
+                    break;
+                case 3:
+                    break;
+                default:
+                    printf("Invalid choice!\n");
+                }
+}
             while (c2 != 3);
             break;
         case 6:
@@ -167,4 +181,27 @@ void displayCities(char cityNames[][30],int cityCount){
         printf("%d. %s\n", i + 1, cityNames[i]);
     }
     printf("-----------------------\n");
+}
+void inputDistance(int distance[][MAX_CITIES],int cityCount,char cityNames[][30]){
+    int c1,c2,dist;
+    displayCities(cityNames,cityCount);
+    printf("Enter city number:");
+    scanf("%d",&c1);
+    printf("Enter destination city number:");
+    scanf("%d",&c2);
+    if (c1 < 1 || c1 > cityCount || c2 < 1 || c2 > cityCount || c1 == c2)
+    {
+        printf("Invalid!\n");
+        return;
+    }
+    printf("Enter distance between %s and %s (km):",cityNames[c1-1],cityNames[c2-1]);
+    scanf("%d",&dist);
+    if (dist <= 0)
+    {
+        printf("Distance must be positive.\n");
+        return;
+    }
+    distance[c1 - 1][c2 - 1] = dist;
+    distance[c2 - 1][c1 - 1] = dist;
+    printf("Distance recorded.\n");
 }
